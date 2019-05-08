@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+{% macro nav_link(endpoint, display) %}
+    <a class="{% if request.endpoint == endpoint %}active {% endif %}item"
+       href="{{ url_for(endpoint) }}">{{ display }}</a>
+{% endmacro %}
+<nav class="ui fixed menu inverted navbar">
+    <a href="#" class="brand item">Twitter Chicago</a>
+    {{ nav_link('arch', 'Architecture') }}
+    {{ nav_link('lang', 'Languages') }}
+    {{ nav_link('device', 'Devices') }}
+    {{ nav_link('follower', 'Followers') }}
+    {{ nav_link('topic', 'Topics') }}
+    {{ nav_link('sentiment', 'Sentiment') }}
+    {{ nav_link('google_map', 'Map') }}
+    {{ nav_link('time_line', 'Time Line') }}
+</nav>
+
+{% block main %}
+    <main class="ui page grid">
+        <div class="column">
+            {% block column %}{% endblock %}
+        </div>
+    </main>
+{% endblock %}
+</body>
+</html>

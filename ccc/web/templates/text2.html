@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cluster and Cloud Computing Group 28</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+
+    <style TYPE="text/css">
+        body {
+            margin: 20px;
+            padding: 0px;
+        }
+        html,
+        body,
+        #income_analysis_map_container {
+            height: 700px;
+            width: 1200px;
+        }
+        #income_analysis_container {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Victorian Social Media Analysis</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li id="income_analysis_menu_tab" class="active"><a herf="#">Income Analysis</a></li>
+                <li id="alcohol_analysis_menu_tab"><a herf="#">Alcohol Analysis</a></li>
+                <li id="crime_rate_analysis_menu_tab"><a herf="#">Crime Rate Analysis</a></li>
+                <li id="comparison_analysis_menu_tab"><a herf="#">Comparison Analysis</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="income_analysis_map_container" ></div>
+<div id="income_analysis_container" ></div>
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+<script>
+    var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    var attr = ' Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+    var currentFunc="income_analysis_menu_tab";
+
+    $(document).ready(function() {
+        initChart();
+        requestDataForChart(currentFunc);
+        requestDataForMap(currentFunc);
+    });
+
+        var leafletMap = L.map('income_analysis_map_container').setView([37.8, -96], 7);//-37.810,144.928
+
+        L.tileLayer(url, {
+            maxZoom: 18,
+            attribution: attr,
+            id: 'mapbox.streets'
+        }).addTo(leafletMap);
+
+        function getColor(value, mapContent) {
+            if(mapContent=="income_analysis_menu_tab") {
+                return value > 1000 ? '#063696' :
+                    value > 500 ? '#0642e4' :
+                        value > 200 ? '#2854a5' :
+                            value > 100 ? '#4f72b6' :
+                                value > 50 ? '#7490c5' :
+                                    value > 20 ? '#9aafd4' :
+                                        value > 10 ? '#c0cce5' :
+                                            '#e6ebf5';
+            }
+            else if (mapContent=="alcohol_analysis_menu_tab") {
+                return value > 1000 ? '#063696' :
+                    value > 500 ? '#0642e4' :
+                        value > 200 ? '#2854a5' :
+                            value > 100 ? '#4f72b6' :
+                                value > 50 ? '#7490c5' :
+                                    value > 20 ? '#9aafd4' :
+                                        value > 10 ? '#c0cce5' :
+                                            '#e6ebf5';
+            }
+            else if (mapContent=="crime_rate_analysis_menu_tab") {
+                return value > 1000 ? '#063696' :
+                    value > 500 ? '#0642e4' :
+                        value > 200 ? '#2854a5' :
+                            value > 100 ? '#4f72b6' :
+                                value > 50 ? '#7490c5' :
+                                    value > 20 ? '#9aafd4' :
+                                        value > 10 ? '#c0cce5' :
+                                            '#e6ebf5';
+            }
+        }
+
+        function style(feature) {
+            return {
+                fillColor: getColor(feature.properties.density), //density could be changed to any value in feature
+                weight: 1,
+                opacity: 1,
+                color: 'grey',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+
+    function requestDataForMap(chart_name) {
+
+        var request_url = "";
+        switch (chart_name) {
+            case "income_analysis_menu_tab":
+                request_url = "{{ url_for('ret_map_data') }}";
+                break;
+            case "alcohol_analysis_menu_tab":
+                request_url = "{{ url_for('ret_sentidata') }}";
+                break;
+            case "crime_rate_analysis_menu_tab":
+                request_url = "{{ url_for('ret_sentidata') }}";
+                break;
+
+        }
+        $.ajax({
+            url: request_url,
+            type: 'GET',
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (Data) {
+               // document.write(Data)
+                displayData=JSON.parse(Data)
+                L.geoJson(displayData, {style: style}).addTo(leafletMap);
+            }
+        })
+
+    }
+
+
+
+    var income_analysis_bar_chart = null;
+    //$(document).ready(
+    function initChart() {
+        income_analysis_bar_chart = Highcharts.chart('income_analysis_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestDataForChart(currentFunc)
+                }
+            },
+            title: {
+                text: 'Income levels in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Annual Income/$'
+                }
+            },
+            series: [{
+                name: 'Income',
+                data: []
+            }]
+        });
+    }
+
+    function requestDataForChart(chart_name) {
+
+        var request_url = "";
+        switch (chart_name) {
+            case "income_analysis_menu_tab":
+                request_url = "{{ url_for('ret_sentidata') }}";
+                break;
+            case "alcohol_analysis_menu_tab":
+                request_url = "{{ url_for('ret_sentidata') }}";
+                break;
+            case "crime_rate_analysis_menu_tab":
+                request_url = "{{ url_for('ret_sentidata') }}";
+                break;
+
+        }
+
+        $.ajax({
+            url: request_url,
+            type: 'GET',
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (Data) {
+                if (Data && Data != undefined && Data != "undefined") {
+                    var importedData = [];
+                    var categories = [];
+                    for (var item in Data) {
+                        var area = item.toString();
+                        categories.push(area);
+                        importedData.push(Data[item]);
+                    }
+                    income_analysis_bar_chart.xAxis[0].setCategories(categories);
+                    income_analysis_bar_chart.series[0].update({data: importedData});
+                }
+            }
+        })
+    }
+
+
+    window.onload = function () {
+        var income_analysis_menu_tab = document.getElementById("income_analysis_menu_tab");
+        var income_analysis_bar_chart = document.getElementById("income_analysis_bar_chart");
+        income_analysis_menu_tab.addEventListener("click", function () {
+            income_analysis_container.style.display = "block";
+            income_analysis_map_container.style.display = "block";
+            currentFunc="income_analysis_menu_tab";
+        });
+
+        var alcohol_analysis_menu_tab = document.getElementById("alcohol_analysis_menu_tab");
+        alcohol_analysis_menu_tab.addEventListener("click", function () {
+            income_analysis_container.style.display = "block";
+            income_analysis_map_container.style.display = "block";
+            currentFunc="alcohol_analysis_menu_tab";
+        });
+
+        var crime_rate_analysis_menu_tab = document.getElementById("crime_rate_analysis_menu_tab");
+        crime_rate_analysis_menu_tab.addEventListener("click", function () {
+            income_analysis_container.style.display = "block";
+            income_analysis_map_container.style.display = "block";
+            currentFunc="crime_rate_analysis_menu_tab";
+        });
+
+        var comparison_analysis_menu_tab = document.getElementById("comparison_analysis_menu_tab");
+        comparison_analysis_menu_tab.addEventListener("click", function () {
+            income_analysis_container.style.display = "none";
+            income_analysis_map_container.style.display = "none";
+            currentFunc="comparison_analysis_menu_tab";
+        });
+    }
+</script>
+
+
+</body>
+</html>
