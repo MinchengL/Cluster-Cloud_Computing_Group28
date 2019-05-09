@@ -2,9 +2,18 @@ import json
 import re
 import couchdb
 from textblob import TextBlob
+import keywordCheck
 
 server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
-db = server.create('tweets')
+try:
+    tweets_db = server['tweets']
+except BaseException:
+    tweets_db = server.create('tweets')
+
+try:
+    raw_tweets_db = server['raw_tweets']
+except BaseException:
+    raw_tweets_db = server.create('raw_tweets')
 
 def keep_text (tweet):
     print(tweet)
@@ -27,7 +36,8 @@ def dataProcesser(tweet):
                   'state': None,
                   'raw_data': None,
                   'sentiment_score': None,
-                  'sentiment_result': None
+                  'sentiment_result': None,
+                  'IsAlcohol':None
                   }
     x = json.loads(tweet)
     write_data['_id'] = str(x['id_str'])
@@ -56,8 +66,10 @@ def dataProcesser(tweet):
         write_data['sentiment_result'] = 'negative'
     else:
         write_data['sentiment_result'] = 'neutral'
+    write_data['IsAlcohol'] = keywordCheck.check_keyword(x['text'])
 
-
-    if db.get(write_data['_id']) == None:
-        db.save(write_data)
+    if tweets_db.get(write_data['_id']) == None:
+        tweets_db.save(write_data)
+        raw_tweets_db.save(x)
         print(write_data)
+        print(x)
