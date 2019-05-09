@@ -17,11 +17,6 @@ class TwitterSearcher():
       auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
       auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
       api = tweepy.API(auth)
-      result_tweets = api.search(q = keyword, lang = 'en')
-      for item in tweepy.Cursor(api.user_timeline, id=keyword).items():
+      for item in tweepy.Cursor(api.user_timeline, id=keyword,lang ='en').items():
          x=json.dumps(item._json)
          queueData.rawdata_list.put(x)
-
-if __name__ == '__main__':
-   t=TwitterSearcher()
-   t.searchTweets("python")

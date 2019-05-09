@@ -46,7 +46,8 @@ def dataProcesser(tweet):
             write_data['city'] = x['place']['name']
         if x['place']['full_name']:
             state_text = x['place']['full_name'].split(',')
-            write_data['state'] = state_text[1]
+            if len(state_text)>1:
+                write_data['state'] = state_text[1]
     write_data['raw_data'] = tweet
     write_data['sentiment_score'] = analyze_sentiment(tweet)
     if write_data['sentiment_score'] >0 :

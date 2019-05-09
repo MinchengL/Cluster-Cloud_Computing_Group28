@@ -38,7 +38,3 @@ class StdOutListener(StreamListener):
         if status ==420:
             time.sleep(100)
         print(status)
-
-if __name__ == '__main__':
-    twitterStreamer = TwitterStreamer()
-    twitterStreamer.stream_tweets()
