@@ -25,7 +25,7 @@
             height: 400px;
         }
     </style>
-    <script src="js/us-states.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -82,7 +82,9 @@
 </nav>
 
 <div id="map_container" ></div>
-<div id="data_bar_chart_container" ></div>
+<div id="income_data_bar_chart_container" ></div>
+<div id="crime_rate_data_bar_chart_container" ></div>
+<div id="sentiment_data_bar_chart_container" ></div>
 <div id="alcoholVsTime_chart_container"></div>
 <div id="alcoholVsIncome_chart_container"></div>
 <div id="alcoholVsCrimeRate_chart_container"></div>
@@ -93,16 +95,18 @@
     var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
     var attr = ' Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
     var currentFunc=null;
+    var income_data_bar_chart = null;
+    var crime_rate_data_bar_chart = null;
+    var sentiment_data_bar_chart = null;
+    var alcoholVsTime_chart =null;
+    var alcoholVsIncome_chart=null;
+    var alcoholVsCrimeRate_chart=null;
+    var alcoholVsSentiment_chart=null;
 
     $(document).ready(function() {
         currentFunc = "income_map_menu_tab";
-        initChart();
-        requestDataForChart(currentFunc);
+        initIncomeChart();
         requestDataForMap(currentFunc);
-        //initAlcoholVsTimeChart();
-        //initAlcoholVsIncomeChart();
-        //initAlcoholVsCrimeRateChart();
-        //initAlcoholVsSentimentChart();
     });
 
         var leafletMap = L.map('map_container').setView([-37.810,144.928], 7);
@@ -201,19 +205,16 @@
     }
 
 
-
-    var data_bar_chart = null;
-
-    function initChart() {
-        data_bar_chart = Highcharts.chart('data_bar_chart_container', {
+    function initIncomeChart() {
+        income_data_bar_chart = Highcharts.chart('income_data_bar_chart_container', {
             chart: {
                 type: 'bar',
                 events: {
-                    load: requestDataForChart(currentFunc)
+                    load: requestIncomeDataForChart
                 }
             },
             title: {
-                text: 'Income levels in Victoria'
+                text: 'Average Income Level in Victoria'
             },
             xAxis: {
                 categories: []
@@ -228,26 +229,11 @@
                 data: []
             }]
         });
-    }
 
-    function requestDataForChart(chart_name) {
-
-        var request_url = "";
-        switch (chart_name) {
-            case "income_map_menu_tab":
-                url = "{{ url_for('ret_sentidata') }}"; // here needs the url for requesting the bar chart data of income level
-                break;
-            case "crime_rate_map_menu_tab":
-                url = "{{ url_for('ret_sentidata') }}";// here needs the url for requesting the bar chart data of crime rate level
-                break;
-            case "sentiment_map_menu_tab":
-                url = "{{ url_for('ret_sentidata') }}";// here needs the url for requesting the bar chart data of sentiment level
-                break;
-
-        }
+        function requestIncomeDataForChart() {
 
         $.ajax({
-            url: request_url,
+            url: "{{ url_for('ret_income_data') }}",
             type: 'GET',
             dataType: "json",
             xhrFields: {
@@ -262,16 +248,119 @@
                         categories.push(area);
                         importedData.push(Data[item]);
                     }
-                    income_analysis_bar_chart.xAxis[0].setCategories(categories);
-                    income_analysis_bar_chart.series[0].update({data: importedData});
+                    data_bar_chart.xAxis[0].setCategories(categories);
+                    data_bar_chart.series[0].update({data: importedData});
                 }
             }
         })
     }
+    }
+
+    function initCrimeRateChart() {
+        crime_rate_data_bar_chart = Highcharts.chart('crime_rate_data_bar_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestCrimeRateDataForChart
+                }
+            },
+            title: {
+                text: 'Average Crime Rate Level in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Average Crime Rate/%'
+                }
+            },
+            series: [{
+                name: 'Crime Rate',
+                data: []
+            }]
+        });
+
+        function requestCrimeRateDataForChart() {
+
+            $.ajax({
+                url: "{{ url_for('ret_crime_data') }}",
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(area);
+                            importedData.push(Data[item]);
+                        }
+                        crime_rate_data_bar_chart.xAxis[0].setCategories(categories);
+                        crime_rate_data_bar_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+    function initSentimentChart() {
+        sentiment_data_bar_chart = Highcharts.chart('sentiment_data_bar_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestSentimentDataForChart
+                }
+            },
+            title: {
+                text: 'Average Sentiment Level in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Sentiment Score'
+                }
+            },
+            series: [{
+                name: 'Sentiment Score',
+                data: []
+            }]
+        });
+
+        function requestSentimentDataForChart() {
+
+            $.ajax({
+                url: "{{ url_for('ret_sentidata') }}",
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(area);
+                            importedData.push(Data[item]);
+                        }
+                        sentiment_data_bar_chart.xAxis[0].setCategories(categories);
+                        sentiment_data_bar_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
 
     function initAlcoholVsTimeChart(){
 
-        data_bar_chart = Highcharts.chart('alcoholVsTime_chart_container', {
+        alcoholVsTime_chart = Highcharts.chart('alcoholVsTime_chart_container', {
             chart: {
                 type: 'bar',
                 events: {
@@ -311,8 +400,8 @@
                             categories.push(area);
                             importedData.push(Data[item]);
                         }
-                        income_analysis_bar_chart.xAxis[0].setCategories(categories);
-                        income_analysis_bar_chart.series[0].update({data: importedData});
+                        alcoholVsTime_chart.xAxis[0].setCategories(categories);
+                        alcoholVsTime_chart.series[0].update({data: importedData});
                     }
                 }
             })
@@ -321,7 +410,7 @@
 
     function initAlcoholVsIncomeChart(){
 
-        data_bar_chart = Highcharts.chart('alcoholVsIncome_chart_container', {
+        alcoholVsIncome_chart = Highcharts.chart('alcoholVsIncome_chart_container', {
             chart: {
                 type: 'bar',
                 events: {
@@ -361,8 +450,8 @@
                             categories.push(area);
                             importedData.push(Data[item]);
                         }
-                        income_analysis_bar_chart.xAxis[0].setCategories(categories);
-                        income_analysis_bar_chart.series[0].update({data: importedData});
+                        alcoholVsIncome_chart.xAxis[0].setCategories(categories);
+                        alcoholVsIncome_chart.series[0].update({data: importedData});
                     }
                 }
             })
@@ -371,7 +460,7 @@
 
     function initAlcoholVsCrimeRateChart(){
 
-        data_bar_chart = Highcharts.chart('alcoholVsCrimeRate_chart_container', {
+        alcoholVsCrimeRate_chart = Highcharts.chart('alcoholVsCrimeRate_chart_container', {
             chart: {
                 type: 'bar',
                 events: {
@@ -411,8 +500,8 @@
                             categories.push(area);
                             importedData.push(Data[item]);
                         }
-                        income_analysis_bar_chart.xAxis[0].setCategories(categories);
-                        income_analysis_bar_chart.series[0].update({data: importedData});
+                        alcoholVsCrimeRate_chart.xAxis[0].setCategories(categories);
+                        alcoholVsCrimeRate_chart.series[0].update({data: importedData});
                     }
                 }
             })
@@ -421,7 +510,7 @@
 
     function initAlcoholVsSentimentChart(){
 
-        data_bar_chart = Highcharts.chart('alcoholVsSentiment_chart_container', {
+        alcoholVsSentiment_chart = Highcharts.chart('alcoholVsSentiment_chart_container', {
             chart: {
                 type: 'bar',
                 events: {
@@ -461,8 +550,8 @@
                             categories.push(area);
                             importedData.push(Data[item]);
                         }
-                        income_analysis_bar_chart.xAxis[0].setCategories(categories);
-                        income_analysis_bar_chart.series[0].update({data: importedData});
+                        alcoholVsSentiment_chart.xAxis[0].setCategories(categories);
+                        alcoholVsSentiment_chart.series[0].update({data: importedData});
                     }
                 }
             })
@@ -474,20 +563,24 @@
         var income_map_menu_tab = document.getElementById("income_map_menu_tab");
         income_map_menu_tab.addEventListener("click", function () {
             map_container.style.display = "block";
-            data_bar_chart_container.style.display = "block";
+            income_data_bar_chart_container.style.display ="block"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="income_map_menu_tab";
-            requestDataForChart(currentFunc);
+            initIncomeChart();
             requestDataForMap(currentFunc);
         });
 
         var alcohol_map_menu_tab = document.getElementById("alcohol_map_menu_tab");
         alcohol_map_menu_tab.addEventListener("click", function () {
             map_container.style.display = "block";
-            data_bar_chart_container.style.display = "none";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="block"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
@@ -499,33 +592,39 @@
         var crime_rate_map_menu_tab = document.getElementById("crime_rate_map_menu_tab");
         crime_rate_map_menu_tab.addEventListener("click", function () {
             map_container.style.display = "block";
-            data_bar_chart_container.style.display = "block";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="block"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="crime_rate_map_menu_tab";
-            requestDataForChart(currentFunc);
+            initCrimeRateChart()
             requestDataForMap(currentFunc);
         });
 
         var sentiment_map_menu_tab = document.getElementById("sentiment_map_menu_tab");
         sentiment_map_menu_tab.addEventListener("click", function () {
             map_container.style.display = "block";
-            data_bar_chart_container.style.display = "block";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="block"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="sentiment_map_menu_tab";
-            requestDataForChart(currentFunc);
+            initSentimentChart();
             requestDataForMap(currentFunc);
         });
 
         var alcoholVsTime_analysis_menu_tab = document.getElementById("alcoholVsTime_analysis_menu_tab");
         alcoholVsTime_analysis_menu_tab.addEventListener("click", function () {
             map_container.style.display = "none";
-            data_bar_chart_container.style.display = "none";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "block";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
@@ -537,7 +636,9 @@
         var alcoholVsIncome_analysis_menu_tab = document.getElementById("alcoholVsIncome_analysis_menu_tab");
         alcoholVsIncome_analysis_menu_tab.addEventListener("click", function () {
             map_container.style.display = "none";
-            data_bar_chart_container.style.display = "none";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "block";
             alcoholVsCrimeRate_chart_container.style.display = "none";
@@ -549,7 +650,9 @@
         var alcoholVsCrimeRate_analysis_menu_tab = document.getElementById("alcoholVsCrimeRate_analysis_menu_tab");
         alcoholVsCrimeRate_analysis_menu_tab.addEventListener("click", function () {
             map_container.style.display = "none";
-            data_bar_chart_container.style.display = "none";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "block";
@@ -561,7 +664,9 @@
         var alcoholVsSentiment_analysis_menu_tab = document.getElementById("alcoholVsSentiment_analysis_menu_tab");
         alcoholVsSentiment_analysis_menu_tab.addEventListener("click", function () {
             map_container.style.display = "none";
-            data_bar_chart_container.style.display = "none";
+            income_data_bar_chart_container.style.display ="none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
             alcoholVsTime_chart_container.style.display = "none";
             alcoholVsIncome_chart_container.style.display = "none";
             alcoholVsCrimeRate_chart_container.style.display = "none";
