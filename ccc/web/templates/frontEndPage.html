@@ -92,16 +92,17 @@
 <script>
     var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
     var attr = ' Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
-    var currentFunc="income_analysis_menu_tab";
+    var currentFunc=null;
 
     $(document).ready(function() {
+        currentFunc = "income_map_menu_tab";
         initChart();
         requestDataForChart(currentFunc);
         requestDataForMap(currentFunc);
-        initAlcoholVsTimeChart();
-        initAlcoholVsIncomeChart();
-        initAlcoholVsCrimeRateChart();
-        initAlcoholVsSentimentChart();
+        //initAlcoholVsTimeChart();
+        //initAlcoholVsIncomeChart();
+        //initAlcoholVsCrimeRateChart();
+        //initAlcoholVsSentimentChart();
     });
 
         var leafletMap = L.map('map_container').setView([-37.810,144.928], 7);
@@ -479,6 +480,8 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="income_map_menu_tab";
+            requestDataForChart(currentFunc);
+            requestDataForMap(currentFunc);
         });
 
         var alcohol_map_menu_tab = document.getElementById("alcohol_map_menu_tab");
@@ -490,6 +493,7 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="alcohol_map_menu_tab";
+            requestDataForMap(currentFunc);
         });
 
         var crime_rate_map_menu_tab = document.getElementById("crime_rate_map_menu_tab");
@@ -501,6 +505,8 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="crime_rate_map_menu_tab";
+            requestDataForChart(currentFunc);
+            requestDataForMap(currentFunc);
         });
 
         var sentiment_map_menu_tab = document.getElementById("sentiment_map_menu_tab");
@@ -512,6 +518,8 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="sentiment_map_menu_tab";
+            requestDataForChart(currentFunc);
+            requestDataForMap(currentFunc);
         });
 
         var alcoholVsTime_analysis_menu_tab = document.getElementById("alcoholVsTime_analysis_menu_tab");
@@ -523,6 +531,7 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="alcoholVsTime_analysis_menu_tab";
+            initAlcoholVsTimeChart();
         });
 
         var alcoholVsIncome_analysis_menu_tab = document.getElementById("alcoholVsIncome_analysis_menu_tab");
@@ -534,6 +543,7 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="alcoholVsIncome_analysis_menu_tab";
+            initAlcoholVsIncomeChart();
         });
 
         var alcoholVsCrimeRate_analysis_menu_tab = document.getElementById("alcoholVsCrimeRate_analysis_menu_tab");
@@ -545,6 +555,7 @@
             alcoholVsCrimeRate_chart_container.style.display = "block";
             alcoholVsSentiment_chart_container.style.display = "none";
             currentFunc="alcoholVsCrimeRate_analysis_menu_tab";
+            initAlcoholVsCrimeRateChart();
         });
 
         var alcoholVsSentiment_analysis_menu_tab = document.getElementById("alcoholVsSentiment_analysis_menu_tab");
@@ -556,6 +567,7 @@
             alcoholVsCrimeRate_chart_container.style.display = "none";
             alcoholVsSentiment_chart_container.style.display = "block";
             currentFunc="alcoholVsSentiment_analysis_menu_tab";
+            initAlcoholVsSentimentChart();
         });
     }
 </script>
