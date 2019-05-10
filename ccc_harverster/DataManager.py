@@ -52,6 +52,7 @@ if __name__ == '__main__':
     data_importer.importGlaMapData()
     data_importer.importIncomeData()
     data_importer.importCriminalData()
+    print("data imported")
 
     for i in range(search_api_job_num):
         t = Thread(target = do_search_api_job)

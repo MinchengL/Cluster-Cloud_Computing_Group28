@@ -17,7 +17,6 @@ except BaseException:
     raw_tweets_db = server.create('raw_tweets')
 
 def keep_text (tweet):
-    print(tweet)
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
 
 def analyze_sentiment(tweet):
@@ -52,13 +51,12 @@ def dataProcesser(tweet):
     if x['geo'] is not None:
         if x['geo']['coordinates'] is not None:
             write_data['geo'] = x['geo']['coordinates']
-            point = {"type": "Point",
-                     "coordinates":write_data['geo']}
-            write_data['geo_result'] = geo_analyzer.geo_analysis(point)
-            print(write_data['geo_result'])
+            write_data['geo_result'] = geo_analyzer.geo_analysis(write_data['geo']) ####
     if x['place'] is not None:
         if x['place']['name'] is not None:
             write_data['city'] = x['place']['name']
+            if write_data['geo_result'] == None:
+                write_data['geo_result'] = geo_analyzer.city_analysis(x['place']['name']) ####
         if x['place']['full_name']:
             state_text = x['place']['full_name'].split(',')
             if len(state_text)>1:
@@ -72,8 +70,8 @@ def dataProcesser(tweet):
     else:
         write_data['sentiment_result'] = 'neutral'
     write_data['IsAlcohol'] = keywordCheck.check_keyword(x['text'])
+    print(write_data['geo_result'])
 
     if tweets_db.get(write_data['_id']) == None:
         tweets_db.save(write_data)
         raw_tweets_db.save(x)
-        print(write_data)

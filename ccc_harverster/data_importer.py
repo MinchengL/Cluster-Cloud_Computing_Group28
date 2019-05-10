@@ -18,6 +18,7 @@ except BaseException:
     crime_rate_data_db = server.create('crime_rate_data')
 
 def importGlaMapData():
+    isExist = False
     with open("/Users/limincheng/gla_final.json",'r') as file:
         json_file=json.loads(file.read())
         for item in json_file['features']:
@@ -54,10 +55,14 @@ def importGlaMapData():
             write_data['properties_vic_lga__4'] = item['properties']['vic_lga__4']
             write_data['properties_vic_lga__5'] = item['properties']['vic_lga__5']
 
-            lga_map_db.save(write_data)
-            print("saved")
+            for row in lga_map_db.view('lga_map/lga_map_check',group=True):
+                if row.key == item['id']:
+                    isExist = True
+            if isExist == False:
+                lga_map_db.save(write_data)
 
 def importIncomeData():
+    isExist = False
     with open("/Users/limincheng/income_au.json",'r') as file:
         json_file=json.loads(file.read())
         for item in json_file['features']:
@@ -82,10 +87,14 @@ def importIncomeData():
             write_data['properties_lga_code_2016']=item['properties']['lga_code_2016']
             write_data['properties_lga_name16'] = item['properties']['lga_name16']
 
-            income_data_db.save(write_data)
-            print("saved")
+            for row in income_data_db.view('income_data/income_data_check', group=True):
+                if row.key == item['id']:
+                    isExist = True
+            if isExist == False:
+                income_data_db.save(write_data)
 
 def importCriminalData():
+    isExist = False
     years = [2010, 2011, 2012, 2013, 2014, 2015]
     for i in years:
         num = str(i)
@@ -111,5 +120,15 @@ def importCriminalData():
             write_data['homicide__and__related_offences'] = crime['properties']['a10_homicide__and__related_offences']
             write_data['regulatory_driving_offences'] = crime['properties']['f10_regulatory_driving_offences']
             write_data['reference_period'] = crime['properties']['reference_period']
-            crime_rate_data_db.save(write_data)
-            print("saved")
+
+            for row in crime_rate_data_db.view('crime_rate_data/crime_rate_data_check', group=True):
+                if row.key == crime['id']:
+                    isExist = True
+            if isExist == False:
+                crime_rate_data_db.save(write_data)
+
+if __name__ =="__main__":
+    importGlaMapData()
+    importIncomeData()
+    importCriminalData()
+    print("data imported")
