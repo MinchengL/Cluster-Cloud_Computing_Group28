@@ -20,7 +20,7 @@ def geo_analysis(tweet_geo):
         coordinates_str=''
         if city_name is not None and coordinates is not None and geometry_type is not None:
             for item in coordinates[0][0]:
-                coordinates_str += '['+str(item[0])+','+str(item[1])+'],'
+                coordinates_str += '['+str(item[1])+','+str(item[0])+'],'
             coordinates_str = '[[['+coordinates_str[:-1]+']]]'
             points_str ='{"type":"'+geometry_type+'", "coordinates": '+coordinates_str+'}'
             points_str_json = json.loads(points_str)
@@ -37,3 +37,4 @@ def city_analysis(city):
             if city_name.find(city.upper()) != -1:
                 result = city_name
     return result
+
