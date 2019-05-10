@@ -7,6 +7,8 @@ import stream_harvester
 import search_harvester
 import sentiment_alnayzer
 import queueData
+import data_importer
+import geo_analyzer
 
 twitterSearcher = search_harvester.TwitterSearcher()
 twitterStreamer = stream_harvester.TwitterStreamer()
@@ -47,6 +49,9 @@ def do_stream_api_job():
 
 
 if __name__ == '__main__':
+    data_importer.importGlaMapData()
+    data_importer.importIncomeData()
+    data_importer.importCriminalData()
 
     for i in range(search_api_job_num):
         t = Thread(target = do_search_api_job)

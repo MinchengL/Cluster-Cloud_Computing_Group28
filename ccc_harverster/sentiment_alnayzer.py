@@ -3,6 +3,7 @@ import re
 import couchdb
 from textblob import TextBlob
 import keywordCheck
+import geo_analyzer
 
 server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
 try:
@@ -37,7 +38,8 @@ def dataProcesser(tweet):
                   'raw_data': None,
                   'sentiment_score': None,
                   'sentiment_result': None,
-                  'IsAlcohol':None
+                  'IsAlcohol':None,
+                  'geo_result':None
                   }
     x = json.loads(tweet)
     write_data['_id'] = str(x['id_str'])
@@ -50,7 +52,10 @@ def dataProcesser(tweet):
     if x['geo'] is not None:
         if x['geo']['coordinates'] is not None:
             write_data['geo'] = x['geo']['coordinates']
-            print(tweet)
+            point = {"type": "Point",
+                     "coordinates":write_data['geo']}
+            write_data['geo_result'] = geo_analyzer.geo_analysis(point)
+            print(write_data['geo_result'])
     if x['place'] is not None:
         if x['place']['name'] is not None:
             write_data['city'] = x['place']['name']
@@ -72,4 +77,3 @@ def dataProcesser(tweet):
         tweets_db.save(write_data)
         raw_tweets_db.save(x)
         print(write_data)
-        print(x)
