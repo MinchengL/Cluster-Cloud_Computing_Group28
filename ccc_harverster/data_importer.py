@@ -6,6 +6,9 @@ import queueData
 Views_processer.design_view_lga_map(queueData.lga_map_db)
 Views_processer.design_view_income(queueData.income_data_db)
 Views_processer.design_view_crime_rate(queueData.crime_rate_data_db)
+Views_processer.design_view_get_crime(queueData.crime_rate_data_db)
+Views_processer.design_view_get_income(queueData.income_data_db)
+Views_processer.design_view_get_sen_count(queueData.tweets_db)
 
 def importGlaMapData():
     isExist = False
