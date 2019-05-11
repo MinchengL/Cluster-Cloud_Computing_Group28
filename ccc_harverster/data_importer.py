@@ -1,25 +1,15 @@
 import couchdb
 import json
+import Views_processer
+import queueData
 
-server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
-try:
-    lga_map_db = server['lga_map_data']
-except BaseException:
-    lga_map_db = server.create('lga_map_data')
-
-try:
-    income_data_db = server['income_data']
-except BaseException:
-    income_data_db = server.create('income_data')
-
-try:
-    crime_rate_data_db = server['crime_rate_data']
-except BaseException:
-    crime_rate_data_db = server.create('crime_rate_data')
+Views_processer.design_view_lga_map(queueData.lga_map_db)
+Views_processer.design_view_income(queueData.income_data_db)
+Views_processer.design_view_crime_rate(queueData.crime_rate_data_db)
 
 def importGlaMapData():
     isExist = False
-    with open("/Users/limincheng/gla_final.json",'r') as file:
+    with open("data/gla_final.json",'r') as file:
         json_file=json.loads(file.read())
         for item in json_file['features']:
             write_data = {
@@ -55,15 +45,15 @@ def importGlaMapData():
             write_data['properties_vic_lga__4'] = item['properties']['vic_lga__4']
             write_data['properties_vic_lga__5'] = item['properties']['vic_lga__5']
 
-            for row in lga_map_db.view('lga_map/lga_map_check',group=True):
+            for row in queueData.lga_map_db.view('lga_map/lga_map_check',group=True):
                 if row.key == item['id']:
                     isExist = True
             if isExist == False:
-                lga_map_db.save(write_data)
+                queueData.lga_map_db.save(write_data)
 
 def importIncomeData():
     isExist = False
-    with open("/Users/limincheng/income_au.json",'r') as file:
+    with open("data/income_au.json",'r') as file:
         json_file=json.loads(file.read())
         for item in json_file['features']:
             write_data = {
@@ -87,11 +77,11 @@ def importIncomeData():
             write_data['properties_lga_code_2016']=item['properties']['lga_code_2016']
             write_data['properties_lga_name16'] = item['properties']['lga_name16']
 
-            for row in income_data_db.view('income_data/income_data_check', group=True):
+            for row in queueData.income_data_db.view('income_data/income_data_check', group=True):
                 if row.key == item['id']:
                     isExist = True
             if isExist == False:
-                income_data_db.save(write_data)
+                queueData.income_data_db.save(write_data)
 
 def importCriminalData():
     isExist = False
@@ -99,7 +89,7 @@ def importCriminalData():
     for i in years:
         num = str(i)
         name = "crime_rate_" + num
-    with open("/Users/limincheng/"+name+".json","r") as crime_file:
+    with open("data/"+name+".json","r") as crime_file:
         crimes = json.load(crime_file)
     for crime in crimes['features']:
             write_data = {
@@ -121,14 +111,8 @@ def importCriminalData():
             write_data['regulatory_driving_offences'] = crime['properties']['f10_regulatory_driving_offences']
             write_data['reference_period'] = crime['properties']['reference_period']
 
-            for row in crime_rate_data_db.view('crime_rate_data/crime_rate_data_check', group=True):
+            for row in queueData.crime_rate_data_db.view('crime_rate_data/crime_rate_data_check', group=True):
                 if row.key == crime['id']:
                     isExist = True
             if isExist == False:
-                crime_rate_data_db.save(write_data)
-
-if __name__ =="__main__":
-    importGlaMapData()
-    importIncomeData()
-    importCriminalData()
-    print("data imported")
+                queueData.crime_rate_data_db.save(write_data)

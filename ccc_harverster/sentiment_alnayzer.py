@@ -4,17 +4,7 @@ import couchdb
 from textblob import TextBlob
 import keywordCheck
 import geo_analyzer
-
-server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
-try:
-    tweets_db = server['tweets']
-except BaseException:
-    tweets_db = server.create('tweets')
-
-try:
-    raw_tweets_db = server['raw_tweets']
-except BaseException:
-    raw_tweets_db = server.create('raw_tweets')
+import queueData
 
 def keep_text (tweet):
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
@@ -72,6 +62,6 @@ def dataProcesser(tweet):
     write_data['IsAlcohol'] = keywordCheck.check_keyword(x['text'])
     print(write_data['geo_result'])
 
-    if tweets_db.get(write_data['_id']) == None:
-        tweets_db.save(write_data)
-        raw_tweets_db.save(x)
+    if queueData.tweets_db.get(write_data['_id']) == None:
+        queueData.tweets_db.save(write_data)
+        queueData.raw_tweets_db.save(x)

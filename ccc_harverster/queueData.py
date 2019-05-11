@@ -1,6 +1,5 @@
 import queue
-import os
-import threading
+import couchdb
 
 keyword_list = queue.Queue(100)
 rawdata_list = queue.Queue(100)
@@ -33,5 +32,29 @@ location3 = [146.99246, -39.134073, 149.977361, -33.996347]
 location_list.put(location1)
 location_list.put(location2)
 location_list.put(location3)
-#location = [140.957576, -39.134073, 149.977361, -33.996347]
-#location_list.put(location)
+
+server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
+try:
+    tweets_db = server['tweets_data']
+except BaseException:
+    tweets_db = server.create('tweets_data')
+
+try:
+    raw_tweets_db = server['raw_tweets']
+except BaseException:
+    raw_tweets_db = server.create('raw_tweets')
+
+try:
+    lga_map_db = server['lga_map_data']
+except BaseException:
+    lga_map_db = server.create('lga_map_data')
+
+try:
+    income_data_db = server['income_data']
+except BaseException:
+    income_data_db = server.create('income_data')
+
+try:
+    crime_rate_data_db = server['crime_rate_data']
+except BaseException:
+    crime_rate_data_db = server.create('crime_rate_data')
