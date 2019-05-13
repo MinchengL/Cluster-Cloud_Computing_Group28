@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cluster and Cloud Computing Group 28</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQAekZZQR6lDRY5PcNsURMAYN5-EnTw1E" async defer></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style TYPE="text/css">
+        body {
+            margin: 20px;
+            padding: 0px;
+        }
+        html,
+        body,
+        #income_data_map_container{
+            width: 1200px;
+            height: 800px;
+        }
+        #crime_rate_data_map_container{
+            width: 1200px;
+            height: 800px;
+        }
+        #sentiment_data_map_container{
+            width: 1200px;
+            height: 800px;
+        }
+        #alcohol_data_map_container{
+            width: 1200px;
+            height: 800px;
+        }
+        #income_data_bar_chart_container {
+            width: 1200px;
+            height: 700px;
+        }
+        #crime_rate_data_bar_chart_container{
+            width: 1200px;
+            height: 700px;
+        }
+        #sentiment_data_bar_chart_container{
+           width: 1200px;
+            height: 700px;
+        }
+        #alcoholVsTime_chart_container{
+            width: 1200px;
+            height: 700px;
+        }
+        #alcoholVsIncome_chart_container{
+            width: 1200px;
+            height: 700px;
+        }
+        #alcoholVsCrimeRate_chart_container{
+           width: 1200px;
+            height: 700px;
+        }
+        #alcoholVsSentiment_chart_container{
+            width: 1200px;
+            height: 700px;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Victorian Social Media Analysis</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown_map" data-toggle="dropdown" href="#">
+                        Maps
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown_map">
+                        <li id="income_map_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Income Data</a>
+                        </li>
+                        <li id="alcohol_map_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol Related Data</a>
+                        </li>
+                        <li id="crime_rate_map_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Crime Rate Data</a>
+                        </li>
+                        <li id="sentiment_map_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Sentiment Analysis Data </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="dropdown_analysis" data-toggle="dropdown">
+                        Analysis
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown_map">
+                        <li id="alcoholVsTime_analysis_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Time</a>
+                        </li>
+                        <li id="alcoholVsIncome_analysis_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Income</a>
+                        </li>
+                        <li id="alcoholVsCrimeRate_analysis_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Crime Rate</a>
+                        </li>
+                        <li id="alcoholVsSentiment_analysis_menu_tab" role="presentation">
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Sentiment Analysis</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="income_data_map_container"></div>
+<div id="income_data_bar_chart_container" ></div>
+<div id="alcohol_data_map_container"></div>
+<div id="crime_rate_data_map_container"></div>
+<div id="crime_rate_data_bar_chart_container" ></div>
+<div id="sentiment_data_bar_chart_container" ></div>
+<div id="alcoholVsTime_chart_container"></div>
+<div id="alcoholVsIncome_chart_container"></div>
+<div id="alcoholVsCrimeRate_chart_container"></div>
+<div id="alcoholVsSentiment_chart_container"></div>
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+<script src="static/gla_final_test.js"></script>
+
+<script>
+    var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    var attr = ' Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
+    var currentFunc=null;
+    var income_data_bar_chart = null;
+    var income_data_map = null;
+    var alcohol_data_map = null;
+    var crime_rate_data_bar_chart = null;
+    var crime_rate_data_map=null;
+    var sentiment_data_bar_chart = null;
+    var alcoholVsTime_chart =null;
+    var alcoholVsIncome_chart=null;
+    var alcoholVsCrimeRate_chart=null;
+    var alcoholVsSentiment_chart=null;
+
+    $(document).ready(function() {
+        initIncomeMap();
+        initIncomeChart();
+    });
+
+    function initIncomeMap(){
+        var mapProp = {
+            center: new google.maps.LatLng(-37.4713, 144.7852),
+            zoom:7,
+            mapTypeId : google.maps.MapTypeId.ROADMAP
+
+        };
+
+        income_data_map = new google.maps.Map(document.getElementById("income_data_map_container"),mapProp);
+        income_data_map.data.addGeoJson(incomedata);
+        income_data_map.data.setStyle(function(feature){
+            var value = feature.getProperty('income')
+            var color = value > 8400000 ? '#2b0104' :
+                value > 6300000 ? '#5b0204' :
+                    value > 4200000 ? '#8e040a' :
+                        value > 2400000 ? '#bf0712' :
+                            value > 1200000 ? '#e00c20' :
+                                        '#fd959d';
+            return {
+                fillColor: color,
+                fillOpacity: 1,
+                strokeWeight: 0.5
+            }
+
+        });
+    }
+
+    function initIncomeChart() {
+        income_data_bar_chart = Highcharts.chart('income_data_bar_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestIncomeDataForChart
+                }
+            },
+            title: {
+                text: '(Top 10 Cities/Areas) Total Amount of Income Earned Annually in Victoria (2010-2015)'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Annual Total Income Per City(Area)/$'
+                }
+            },
+            series: [{
+                name: 'Income',
+                data: []
+            }]
+        });
+
+        function requestIncomeDataForChart() {
+
+        $.ajax({
+            url: "{{ url_for('ret_income_data') }}",
+            type: 'GET',
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (Data) {
+                console.log(Data)
+                if (Data && Data != undefined && Data != "undefined") {
+                    var importedData = [];
+                    var categories = [];
+                    for (var item in Data) {
+                        var area = Data[item].toString();
+                        categories.push(area);
+                        importedData.push(parseFloat(item));
+                    }
+                    income_data_bar_chart.xAxis[0].setCategories(categories);
+                    income_data_bar_chart.series[0].update({data: importedData});
+                }
+            }
+        })
+    }
+    }
+
+    function initAlcoholMap(){
+        var mapProp = {
+            center: new google.maps.LatLng(-37.4713, 144.7852),
+            zoom:7,
+            mapTypeId : google.maps.MapTypeId.ROADMAP
+
+        };
+
+        alcohol_data_map = new google.maps.Map(document.getElementById("alcohol_data_map_container"),mapProp);
+        requestAlcoholDataForMap();
+
+        function requestAlcoholDataForMap() {
+
+            $.ajax({
+                url: "{{ url_for('ret_alcohol_marker') }}", /////////url!!!!!!!!!!
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        for (var item in Data) {
+                            var geo = Data[item]
+                            console.log(geo[0])
+                            var marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(parseFloat(geo[1]), parseFloat(geo[0])),
+                            });
+
+                            marker.setMap(alcohol_data_map);
+                        }
+                    }
+                }
+            })
+        }
+
+    }
+
+    function initCrimeRateChart() {
+        crime_rate_data_bar_chart = Highcharts.chart('crime_rate_data_bar_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestCrimeRateDataForChart
+                }
+            },
+            title: {
+                text: 'Total Number of Sexual Offences in Victoria (2010-2015)'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Number of Sexual Offences Per City(Area)'
+                }
+            },
+            series: [{
+                name: 'Total Number of Sexual Offences Per City(Area)',
+                data: []
+            }]
+        });
+
+        function requestCrimeRateDataForChart() {
+
+            $.ajax({
+                url: "{{ url_for('ret_crime_data') }}",
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(area);
+                            importedData.push(Data[item]);
+                        }
+                        crime_rate_data_bar_chart.xAxis[0].setCategories(categories);
+                        crime_rate_data_bar_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+
+    function initSentimentChart() {
+        sentiment_data_bar_chart = Highcharts.chart('sentiment_data_bar_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestSentimentDataForChart
+                }
+            },
+            title: {
+                text: 'Average Sentiment Score in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'Sentiment Score Per City(Area) / %'
+                }
+            },
+            series: [{
+                name: 'Sentiment Score',
+                data: []
+            }]
+        });
+
+        function requestSentimentDataForChart() {
+
+            $.ajax({
+                url: "{{ url_for('ret_sentidata') }}",
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(area);
+                            importedData.push(Data[item]);
+                        }
+                        sentiment_data_bar_chart.xAxis[0].setCategories(categories);
+                        sentiment_data_bar_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+    function initCrimeRateMap(){
+        var mapProp = {
+            center: new google.maps.LatLng(-37.4713, 144.7852),
+            zoom:7,
+            mapTypeId : google.maps.MapTypeId.ROADMAP
+
+        };
+
+        crime_rate_data_map = new google.maps.Map(document.getElementById("crime_rate_data_map_container"),mapProp);
+        crime_rate_data_map.data.addGeoJson(incomedata); ////////////
+        crime_rate_data_map.data.setStyle(function(feature){
+            var value = feature.getProperty('income')
+            var color = value > 8400000 ? '#2b0104' :
+                value > 6300000 ? '#5b0204' :
+                    value > 4200000 ? '#8e040a' :
+                        value > 2400000 ? '#bf0712' :
+                            value > 1200000 ? '#e00c20' :
+                                '#fd959d';
+            return {
+                fillColor: color,
+                fillOpacity: 1,
+                strokeWeight: 0.5
+            }
+
+        });
+    }
+
+    function initAlcoholVsTimeChart(){
+
+        alcoholVsTime_chart = Highcharts.chart('alcoholVsTime_chart_container', {
+            chart: {
+                type: 'line',
+                events: {
+                    load: requestDataForAlcoholVsTimeChart
+                }
+            },
+            title: {
+                text: 'Alcohol Vs Time in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'The number of tweets containing \'alcohol\' expression'
+                }
+            },
+            series: [{
+                name: 'Alcohol Vs Time',
+                data: []
+            }]
+        });
+        function requestDataForAlcoholVsTimeChart() {
+            $.ajax({
+                url: "{{ url_for('ret_alcohol_time') }}", // here needs the url for requesting the map data of the comparison between alcohol and time(7 days in a week)
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Mon') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Tue') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Wed') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Thu') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Fri') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Sat') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        for (var item in Data) {
+                            var date = item.toString();
+                            if(date == 'Sun') {
+                                categories.push(date);
+                                importedData.push(Data[date]);
+                            }
+                        }
+                        alcoholVsTime_chart.xAxis[0].setCategories(categories);
+                        alcoholVsTime_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+    function initAlcoholVsIncomeChart(){
+
+        alcoholVsIncome_chart = Highcharts.chart('alcoholVsIncome_chart_container', {
+            chart: {
+                type: 'scatter',
+                events: {
+                    load: requestDataForAlcoholVsIncomeChart
+                }
+            },
+            title: {
+                text: 'Alcohol Vs Income in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'The number of tweets containing \'alcohol\' expression'
+                }
+            },
+            series: [{
+                name: 'Alcohol Vs Income',
+                data: []
+            }]
+        });
+        function requestDataForAlcoholVsIncomeChart() {
+            $.ajax({
+                url: "{{ url_for('ret_alcohol_income') }}",// here needs the url for requesting the map data of the comparison between alcohol and income level
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    console.log(Data)
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(Data[item][1]);
+                            importedData.push(Data[item][0]);
+                        }
+
+                        alcoholVsIncome_chart.xAxis[0].setCategories(categories);
+                        alcoholVsIncome_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+    function initAlcoholVsCrimeRateChart(){
+
+        alcoholVsCrimeRate_chart = Highcharts.chart('alcoholVsCrimeRate_chart_container', {
+            chart: {
+                type: 'scatter',
+                events: {
+                    load: requestDataForAlcoholVsCrimeRateChart
+                }
+            },
+            title: {
+                text: 'Alcohol Vs Crime Rate in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'The percentage of tweets containing \'alcohol\' expression'
+                }
+            },
+            series: [{
+                name: 'Alcohol Vs Number of Sexual Offences Per City(Area)',
+                data: []
+            }]
+        });
+        function requestDataForAlcoholVsCrimeRateChart() {
+            $.ajax({
+                url: "{{ url_for('ret_alcohol_crime') }}", // here needs the url for requesting the map data of the comparison between alcohol and crime rate level
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(Data[item][1]);
+                            importedData.push(Data[item][0]);
+                        }
+                        alcoholVsCrimeRate_chart.xAxis[0].setCategories(categories);
+                        alcoholVsCrimeRate_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+    function initAlcoholVsSentimentChart(){
+
+        alcoholVsSentiment_chart = Highcharts.chart('alcoholVsSentiment_chart_container', {
+            chart: {
+                type: 'bar',
+                events: {
+                    load: requestDataForAlcoholVsSentimentChart
+                }
+            },
+            title: {
+                text: 'Alcohol Vs Sentiment Analysis in Victoria'
+            },
+            xAxis: {
+                categories: []
+            },
+            yAxis: {
+                title: {
+                    text: 'The number of tweets containing \'alcohol\' expression'
+                }
+            },
+            series: [{
+                name: 'Alcohol Vs Sentiment Score',
+                data: []
+            }]
+        });
+        function requestDataForAlcoholVsSentimentChart() {
+            $.ajax({
+                url: "{{ url_for('ret_alcohol_senti') }}",// here needs the url for requesting the map data of the comparison between alcohol and sentiment level
+                type: 'GET',
+                dataType: "json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (Data) {
+                    if (Data && Data != undefined && Data != "undefined") {
+                        var importedData = [];
+                        var categories = [];
+                        for (var item in Data) {
+                            var area = item.toString();
+                            categories.push(area);
+                            importedData.push(Data[item]);
+                        }
+                        alcoholVsSentiment_chart.xAxis[0].setCategories(categories);
+                        alcoholVsSentiment_chart.series[0].update({data: importedData});
+                    }
+                }
+            })
+        }
+    }
+
+
+    window.onload = function () {
+        var income_map_menu_tab = document.getElementById("income_map_menu_tab");
+        income_map_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "block"
+            income_data_bar_chart_container.style.display ="block"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="income_map_menu_tab";
+            initIncomeChart();
+            initIncomeMap();
+        });
+
+        var alcohol_map_menu_tab = document.getElementById("alcohol_map_menu_tab");
+        alcohol_map_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "block"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="alcohol_map_menu_tab";
+            initAlcoholMap();
+        });
+
+        var crime_rate_map_menu_tab = document.getElementById("crime_rate_map_menu_tab");
+        crime_rate_map_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="block"
+            crime_rate_data_map_container.style.display ="block"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="crime_rate_map_menu_tab";
+            initCrimeRateChart()
+            initCrimeRateMap()
+        });
+
+        var sentiment_map_menu_tab = document.getElementById("sentiment_map_menu_tab");
+        sentiment_map_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="block"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="sentiment_map_menu_tab";
+            initSentimentChart();
+        });
+
+        var alcoholVsTime_analysis_menu_tab = document.getElementById("alcoholVsTime_analysis_menu_tab");
+        alcoholVsTime_analysis_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "block";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="alcoholVsTime_analysis_menu_tab";
+            initAlcoholVsTimeChart();
+        });
+
+        var alcoholVsIncome_analysis_menu_tab = document.getElementById("alcoholVsIncome_analysis_menu_tab");
+        alcoholVsIncome_analysis_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "block";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="alcoholVsIncome_analysis_menu_tab";
+            initAlcoholVsIncomeChart();
+        });
+
+        var alcoholVsCrimeRate_analysis_menu_tab = document.getElementById("alcoholVsCrimeRate_analysis_menu_tab");
+        alcoholVsCrimeRate_analysis_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "block";
+            alcoholVsSentiment_chart_container.style.display = "none";
+            currentFunc="alcoholVsCrimeRate_analysis_menu_tab";
+            initAlcoholVsCrimeRateChart();
+        });
+
+        var alcoholVsSentiment_analysis_menu_tab = document.getElementById("alcoholVsSentiment_analysis_menu_tab");
+        alcoholVsSentiment_analysis_menu_tab.addEventListener("click", function () {
+            income_data_map_container.style.display = "none"
+            income_data_bar_chart_container.style.display ="none"
+            alcohol_data_map_container.style.display = "none"
+            crime_rate_data_bar_chart_container.style.display ="none"
+            crime_rate_data_map_container.style.display ="none"
+            sentiment_data_bar_chart_container.style.display ="none"
+            alcoholVsTime_chart_container.style.display = "none";
+            alcoholVsIncome_chart_container.style.display = "none";
+            alcoholVsCrimeRate_chart_container.style.display = "none";
+            alcoholVsSentiment_chart_container.style.display = "block";
+            currentFunc="alcoholVsSentiment_analysis_menu_tab";
+            initAlcoholVsSentimentChart();
+        });
+    }
+</script>
+
+
+</body>
+</html>
