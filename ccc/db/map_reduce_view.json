@@ -3,7 +3,9 @@
   "language": "javascript",
   "views": {
     "name1": {
-      "map": "function(doc) {emit(doc.city,doc);} "
+      "map": "function(doc) {emit(doc.city,1);} ",
+      "reduce": "function (keys,values, reduce){return sum(values);}"
+
     }
   }
 }

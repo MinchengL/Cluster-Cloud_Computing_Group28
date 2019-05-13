@@ -3,11 +3,6 @@ from web import app
 from flask import jsonify
 
 
-
-
-def __cols(pairs=[]):
-    return map(lambda x: {'id': '', 'label': x[0], 'type': x[1]}, pairs)
-
 @app.route('/sentiment_data')
 def ret_sentidata():
     response = {
