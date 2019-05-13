@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="96c95d79-f3ee-4654-9535-a55f52dd50d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/111/111.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/db_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/filter_city.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/DataManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/keywordCheck.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/queueData.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/search_harvester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/sentiment_alnayzer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/stream_harvester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tweet_harvest/twitter_credentials.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/static/frontEndPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/static/js/gla_final_test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/frontEndPage_2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/gla_final.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/templates/gla_final_test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CCC2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CCC2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/geoserver-GetFeature.application" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/dbserach.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/dbserach.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/map_reduce_view.json" beforeDir="false" afterPath="$PROJECT_DIR$/db/map_reduce_view.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/script_inject.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/script_inject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ajax.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/ajax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/111.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/example.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/frontEndPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/js/frontEndPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/geoserver-GetFeature.application" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/graph.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/hello.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/hello2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/homepage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/map.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/map1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/page1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/text.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/templates/text2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CCC2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2880">
+              <caret line="192" column="22" lean-forward="true" selection-start-line="192" selection-start-column="22" selection-end-line="192" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/sentiment.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/alcohol_percentage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/templates/frontEndPage_2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="425" column="71" lean-forward="true" selection-start-line="425" selection-start-column="71" selection-end-line="425" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/ajax.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Flask Main" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>flask</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="AUTO_COMMIT_ON_CHERRY_PICK" value="true" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/map_reduce_view.json" />
+        <option value="$PROJECT_DIR$/db_handler.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/web/app.py" />
+        <option value="$PROJECT_DIR$/data/twitter_streamer.py" />
+        <option value="$PROJECT_DIR$/data/text process.py" />
+        <option value="$PROJECT_DIR$/data/sentiment_alnayzer.py" />
+        <option value="$PROJECT_DIR$/web/templates/graph.html" />
+        <option value="$PROJECT_DIR$/script/ansible_install.sh" />
+        <option value="$PROJECT_DIR$/db/db_replicate" />
+        <option value="$PROJECT_DIR$/web/templates/map.html" />
+        <option value="$PROJECT_DIR$/web/templates/hello.html" />
+        <option value="$PROJECT_DIR$/web/templates/base.html" />
+        <option value="$PROJECT_DIR$/web/templates/111.html" />
+        <option value="$PROJECT_DIR$/web/templates/hello2.html" />
+        <option value="$PROJECT_DIR$/web/templates/222'.html" />
+        <option value="$PROJECT_DIR$/readfile.py" />
+        <option value="$PROJECT_DIR$/web/static/js/us-states.js" />
+        <option value="$PROJECT_DIR$/web/readfile.py" />
+        <option value="$PROJECT_DIR$/web/filter.py" />
+        <option value="$USER_HOME$/Desktop/harvester/harvester.py" />
+        <option value="$PROJECT_DIR$/web/templates/example.html" />
+        <option value="$PROJECT_DIR$/web/templates/map1.html" />
+        <option value="$PROJECT_DIR$/web/run.py" />
+        <option value="$PROJECT_DIR$/data/aaa.py" />
+        <option value="$PROJECT_DIR$/web/templates/text.html" />
+        <option value="$PROJECT_DIR$/web/templates/text2.html" />
+        <option value="$PROJECT_DIR$/db/db_handler.py" />
+        <option value="$PROJECT_DIR$/db/map_reduce_view.json" />
+        <option value="$PROJECT_DIR$/tweet_harvest/sentiment_alnayzer.py" />
+        <option value="$PROJECT_DIR$/tweet_harvest/DataManager.py" />
+        <option value="$PROJECT_DIR$/db/get_income.json" />
+        <option value="$PROJECT_DIR$/db/script_inject.py" />
+        <option value="$PROJECT_DIR$/db/dbserach.py" />
+        <option value="$PROJECT_DIR$/db/db2_test.py" />
+        <option value="$PROJECT_DIR$/db/db3_test.py" />
+        <option value="$PROJECT_DIR$/db/filter_city.py" />
+        <option value="$PROJECT_DIR$/hhh/111.py" />
+        <option value="$PROJECT_DIR$/hhh/222.py" />
+        <option value="$PROJECT_DIR$/111/111.py" />
+        <option value="$PROJECT_DIR$/111/222.py" />
+        <option value="$PROJECT_DIR$/db/db_.py" />
+        <option value="$PROJECT_DIR$/web/ajax.py" />
+        <option value="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/568102fea0744f73b3acdfe1ee0d860a/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/sentiment.py" />
+        <option value="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/568102fea0744f73b3acdfe1ee0d860a/Message/MessageTemp/794c9a2b0b62ab95d5810f0e8af849d8/File/interval_count.py" />
+        <option value="$PROJECT_DIR$/web/__init__.py" />
+        <option value="$PROJECT_DIR$/web/templates/frontEndPage.html" />
+        <option value="$USER_HOME$/Desktop/alcohol_percentage.py" />
+        <option value="$USER_HOME$/Desktop/sentiment.py" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/web/templates/frontEndPage_2.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="828" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Cluster-Cloud_Computing_Group28" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluster-Cloud_Computing_Group28" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluster-Cloud_Computing_Group28" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluster-Cloud_Computing_Group28" type="462c0819:PsiDirectoryNode" />
+              <item name="script" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluster-Cloud_Computing_Group28" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluster-Cloud_Computing_Group28" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluster-Cloud_Computing_Group28" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluster-Cloud_Computing_Group28" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluster-Cloud_Computing_Group28" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluster-Cloud_Computing_Group28" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/js" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
+  </component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/templates" />
+      <recent name="$PROJECT_DIR$/script" />
+      <recent name="$PROJECT_DIR$/web/static" />
+      <recent name="$PROJECT_DIR$/web/static/js" />
+      <recent name="$PROJECT_DIR$/web/static/images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/static/js" />
+      <recent name="$PROJECT_DIR$/web/templates" />
+      <recent name="$PROJECT_DIR$/web/static" />
+      <recent name="$PROJECT_DIR$/db" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.run">
+    <configuration name="frontEndPage.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Cluster-Cloud_Computing_Group28/web/templates/frontEndPage.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="alcohol_percentage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CCC2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/alcohol_percentage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CCC2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sentiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CCC2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/sentiment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CCC2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.run" />
+        <item itemvalue="Python.sentiment" />
+        <item itemvalue="Python.alcohol_percentage" />
+        <item itemvalue="Python.views" />
+        <item itemvalue="JavaScript Debug.frontEndPage.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="96c95d79-f3ee-4654-9535-a55f52dd50d4" name="Default Changelist" comment="" />
+      <created>1556790435035</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556790435035</updated>
+      <workItem from="1556790436241" duration="27000" />
+      <workItem from="1556790503889" duration="14000" />
+      <workItem from="1556790729339" duration="1396000" />
+      <workItem from="1556792188278" duration="993000" />
+      <workItem from="1556793238409" duration="59000" />
+      <workItem from="1556793393446" duration="1599000" />
+      <workItem from="1556795015453" duration="135000" />
+      <workItem from="1556795227727" duration="662000" />
+      <workItem from="1556795981176" duration="27000" />
+      <workItem from="1556796063894" duration="2629000" />
+      <workItem from="1556798900416" duration="382000" />
+      <workItem from="1556799325530" duration="211000" />
+      <workItem from="1556799539384" duration="111000" />
+      <workItem from="1556799711077" duration="23000" />
+      <workItem from="1556799863306" duration="12000" />
+      <workItem from="1556806556944" duration="1712000" />
+      <workItem from="1556808691100" duration="4000" />
+      <workItem from="1556809263762" duration="1631000" />
+      <workItem from="1556868792464" duration="572000" />
+      <workItem from="1556893048565" duration="1101000" />
+      <workItem from="1556968511785" duration="3914000" />
+      <workItem from="1557022175902" duration="1357000" />
+      <workItem from="1557042611531" duration="7876000" />
+      <workItem from="1557053481714" duration="13152000" />
+      <workItem from="1557133149418" duration="1361000" />
+      <workItem from="1557134635390" duration="7868000" />
+      <workItem from="1557204459471" duration="7373000" />
+      <workItem from="1557222989585" duration="5000" />
+      <workItem from="1557223776732" duration="139000" />
+      <workItem from="1557225119792" duration="5000" />
+      <workItem from="1557233892505" duration="62000" />
+      <workItem from="1557233957025" duration="2340000" />
+      <workItem from="1557237118620" duration="335000" />
+      <workItem from="1557237488404" duration="8194000" />
+      <workItem from="1557277939111" duration="10756000" />
+      <workItem from="1557364745703" duration="4281000" />
+      <workItem from="1557380520981" duration="11553000" />
+      <workItem from="1557551984028" duration="301000" />
+      <workItem from="1557552451871" duration="585000" />
+      <workItem from="1557554638680" duration="769000" />
+      <workItem from="1557555601592" duration="3391000" />
+      <workItem from="1557559092063" duration="29000" />
+      <workItem from="1557559181351" duration="125000" />
+      <workItem from="1557559440473" duration="21000" />
+      <workItem from="1557559504069" duration="19000" />
+      <workItem from="1557559555285" duration="85000" />
+      <workItem from="1557559767970" duration="61000" />
+      <workItem from="1557560011613" duration="61000" />
+      <workItem from="1557570387795" duration="252000" />
+      <workItem from="1557570827553" duration="153000" />
+      <workItem from="1557571010418" duration="563000" />
+      <workItem from="1557571813667" duration="3000" />
+      <workItem from="1557572236843" duration="397000" />
+      <workItem from="1557572642828" duration="1589000" />
+      <workItem from="1557574465775" duration="403000" />
+      <workItem from="1557575044390" duration="15672000" />
+      <workItem from="1557598977283" duration="1491000" />
+      <workItem from="1557600803228" duration="26000" />
+      <workItem from="1557601005212" duration="146000" />
+      <workItem from="1557601168371" duration="149000" />
+      <workItem from="1557601605360" duration="320000" />
+      <workItem from="1557601928052" duration="58000" />
+      <workItem from="1557624232756" duration="346000" />
+      <workItem from="1557624605015" duration="151000" />
+      <workItem from="1557624986079" duration="1713000" />
+      <workItem from="1557630945139" duration="2395000" />
+      <workItem from="1557635377203" duration="86000" />
+      <workItem from="1557635591771" duration="33000" />
+      <workItem from="1557635808713" duration="23000" />
+      <workItem from="1557635849104" duration="357000" />
+      <workItem from="1557636754632" duration="28000" />
+      <workItem from="1557636926189" duration="1072000" />
+      <workItem from="1557639435770" duration="305000" />
+      <workItem from="1557640865503" duration="25000" />
+      <workItem from="1557640927461" duration="29000" />
+      <workItem from="1557641326748" duration="278000" />
+      <workItem from="1557641619704" duration="134000" />
+      <workItem from="1557641775804" duration="547000" />
+      <workItem from="1557642507342" duration="2872000" />
+      <workItem from="1557652022608" duration="9000" />
+      <workItem from="1557652131984" duration="111000" />
+      <workItem from="1557652285659" duration="1658000" />
+      <workItem from="1557654021642" duration="9081000" />
+      <workItem from="1557664340405" duration="150000" />
+      <workItem from="1557665967977" duration="778000" />
+      <workItem from="1557671536910" duration="445000" />
+      <workItem from="1557672028084" duration="2440000" />
+      <workItem from="1557675213851" duration="1151000" />
+      <workItem from="1557676448026" duration="402000" />
+      <workItem from="1557676940441" duration="639000" />
+      <workItem from="1557678059312" duration="173000" />
+      <workItem from="1557678271213" duration="22000" />
+      <workItem from="1557678310935" duration="699000" />
+      <workItem from="1557679015507" duration="1282000" />
+      <workItem from="1557680306028" duration="4000" />
+      <workItem from="1557680312581" duration="564000" />
+      <workItem from="1557680961018" duration="423000" />
+      <workItem from="1557681570470" duration="15000" />
+      <workItem from="1557682418832" duration="954000" />
+      <workItem from="1557683601362" duration="37000" />
+      <workItem from="1557684295525" duration="39000" />
+      <workItem from="1557684536714" duration="2028000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="154038000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1" y="23" width="1440" height="828" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.78174037" visible="true" weight="0.2761087" />
+      <window_info id="Structure" order="1" sideWeight="0.21825963" side_tool="true" weight="0.3995633" />
+      <window_info id="Favorites" order="2" sideWeight="0.5021521" side_tool="true" weight="0.33476394" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32608697" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.490701" weight="0.42391303" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39724138" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.509299" side_tool="true" weight="0.42391303" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3281027" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3281027" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.3299909" />
+      <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4903339" visible="true" weight="0.21530758" />
+      <window_info id="Structure" order="1" sideWeight="0.5096661" side_tool="true" weight="0.21530758" />
+      <window_info id="Favorites" order="2" sideWeight="0.5021521" side_tool="true" weight="0.33476394" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32808024" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4985694" visible="true" weight="0.18830243" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39800286" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50143063" side_tool="true" weight="0.32650602" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32909605" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32891566" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.3299909" />
+      <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CCC2$ajax.coverage" NAME="ajax Coverage Results" MODIFIED="1556794485166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/CCC2$filter.coverage" NAME="filter Coverage Results" MODIFIED="1557212242552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/CCC2$readfile.coverage" NAME="readfile Coverage Results" MODIFIED="1557211880739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$script_inject.coverage" NAME="script_inject Coverage Results" MODIFIED="1557402455760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/CCC2$CCC2.coverage" NAME="CCC2 Coverage Results" MODIFIED="1556797191761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$db_handler.coverage" NAME="db_handler Coverage Results" MODIFIED="1557385057432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$views.coverage" NAME="views Coverage Results" MODIFIED="1557671625967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$sentiment.coverage" NAME="sentiment Coverage Results" MODIFIED="1557680550218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
+    <SUITE FILE_PATH="coverage/CCC2$db_handler.coverage" NAME="db_handler Coverage Results" MODIFIED="1557114492331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$dbserach.coverage" NAME="dbserach Coverage Results" MODIFIED="1557402760635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/CCC2$harvester.coverage" NAME="harvester Coverage Results" MODIFIED="1557223872270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/harvester" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$DataManager.coverage" NAME="DataManager Coverage Results" MODIFIED="1557394138216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tweet_harvest" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$interval_count.coverage" NAME="interval_count Coverage Results" MODIFIED="1557651613094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/568102fea0744f73b3acdfe1ee0d860a/Message/MessageTemp/794c9a2b0b62ab95d5810f0e8af849d8/File" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$db2_test.coverage" NAME="db2_test Coverage Results" MODIFIED="1557557767785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$run.coverage" NAME="run Coverage Results" MODIFIED="1557725043689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/CCC2$script_inject.coverage" NAME="script_inject Coverage Results" MODIFIED="1557115083798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/CCC2$run.coverage" NAME="run Coverage Results" MODIFIED="1557328289287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$db_.coverage" NAME="db_ Coverage Results" MODIFIED="1557558230638" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/CCC2$aaa.coverage" NAME="aaa Coverage Results" MODIFIED="1557250452461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/CCC2$dbserach.coverage" NAME="dbserach Coverage Results" MODIFIED="1557308592818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/db" />
+    <SUITE FILE_PATH="coverage/CCC2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1556796105081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Cluster_Cloud_Computing_Group28$alcohol_percentage.coverage" NAME="alcohol_percentage Coverage Results" MODIFIED="1557680214867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
+    <SUITE FILE_PATH="coverage/CCC2$views.coverage" NAME="views Coverage Results" MODIFIED="1557298857992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/db/map_reduce_view.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/script_inject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hhh/111.py" />
+    <entry file="file://$PROJECT_DIR$/hhh/222.py" />
+    <entry file="file://$PROJECT_DIR$/111/111.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/111/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tweet_harvest/queueData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/111/222.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tweet_harvest/search_harvester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/twitter_streamer.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/text_processer.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/filter_city.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/crime.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/db_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/dbserach.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/db2_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/db3_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/db_replicate">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="117" selection-start-line="1" selection-start-column="117" selection-end-line="1" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/sentiment_alnayzer.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/db_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/ccc_harverster/venv/lib/python3.7/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="2291" selection-start-line="2291" selection-end-line="2291" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/geoserver-GetFeature.application" />
+    <entry file="file://$PROJECT_DIR$/db/get_income.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/568102fea0744f73b3acdfe1ee0d860a/Message/MessageTemp/9e20f478899dc29eb19741386f9343c8/File/sentiment.py" />
+    <entry file="file://$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/568102fea0744f73b3acdfe1ee0d860a/Message/MessageTemp/794c9a2b0b62ab95d5810f0e8af849d8/File/interval_count.py" />
+    <entry file="file://$PROJECT_DIR$/web/static/js/frontEndPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5235">
+          <caret line="349" column="54" selection-start-line="349" selection-start-column="54" selection-end-line="349" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/text2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2955">
+          <caret line="197" column="18" selection-start-line="197" selection-start-column="18" selection-end-line="197" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/images/frontEndPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6690">
+          <caret line="446" column="50" selection-start-line="446" selection-start-column="50" selection-end-line="446" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/ccc_harverster/venv/lib/python3.7/site-packages/flask/helpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4965">
+          <caret line="355" selection-start-line="355" selection-end-line="355" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/gla_final.json" />
+    <entry file="file://$PROJECT_DIR$/web/templates/homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/hello2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/gla_final.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/graph.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/geoserver-GetFeature.application">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="15">
+          <caret column="1279" selection-start-column="1279" selection-end-column="1279" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/js/gla_final_test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/static/frontEndPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2535">
+          <caret line="169" column="38" selection-start-line="169" selection-start-column="38" selection-end-line="169" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/example.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/111.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/frontEndPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/gla_final.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281325">
+          <caret column="18755608" selection-start-column="18755608" selection-end-column="18755608" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/frontEndPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="551" column="16" selection-start-line="551" selection-start-column="16" selection-end-line="551" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2880">
+          <caret line="192" column="22" lean-forward="true" selection-start-line="192" selection-start-column="22" selection-end-line="192" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/ajax.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="48" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/sentiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/alcohol_percentage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/templates/frontEndPage_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="425" column="71" lean-forward="true" selection-start-line="425" selection-start-column="71" selection-end-line="425" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
