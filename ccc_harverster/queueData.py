@@ -33,7 +33,7 @@ location_list.put(location1)
 location_list.put(location2)
 location_list.put(location3)
 
-server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
+server = couchdb.Server('http://127.0.0.1:5984/')
 try:
     tweets_db = server['tweets_data']
 except BaseException:
