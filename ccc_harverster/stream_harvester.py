@@ -7,19 +7,17 @@ import json
 import couchdb
 import queueData
 
-#location = [144.5937,-38.5047,145.6299,-37.5113]
-location = [140.957576, -39.134073, 149.977361, -33.996347]
-#location = [-39.134073, 140.957576,-33.996347 , 149.977361]
+#location = [140.957576, -39.134073, 149.977361, -33.996347]
 
 class TwitterStreamer():
 
     def __init__(self):
         pass
 
-    def stream_tweets(self):
+    def stream_tweets(self, consumer_key, consumer_secret, access_token, access_token_secret, location):
         listener = StdOutListener()
-        auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
-        auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
+        auth = OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
         stream = Stream(auth, listener)
         stream.filter(locations=location)
 
@@ -38,7 +36,3 @@ class StdOutListener(StreamListener):
         if status ==420:
             time.sleep(100)
         print(status)
-
-if __name__ == '__main__':
-    twitterStreamer = TwitterStreamer()
-    twitterStreamer.stream_tweets()

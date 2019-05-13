@@ -2,12 +2,11 @@ import json
 import re
 import couchdb
 from textblob import TextBlob
-
-server = couchdb.Server('http://admin:lmc940523!@127.0.0.1:5984/')
-db = server.create('tweets')
+import keywordCheck
+import geo_analyzer
+import queueData
 
 def keep_text (tweet):
-    print(tweet)
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
 
 def analyze_sentiment(tweet):
@@ -27,7 +26,9 @@ def dataProcesser(tweet):
                   'state': None,
                   'raw_data': None,
                   'sentiment_score': None,
-                  'sentiment_result': None
+                  'sentiment_result': None,
+                  'IsAlcohol':None,
+                  'geo_result':None
                   }
     x = json.loads(tweet)
     write_data['_id'] = str(x['id_str'])
@@ -40,13 +41,16 @@ def dataProcesser(tweet):
     if x['geo'] is not None:
         if x['geo']['coordinates'] is not None:
             write_data['geo'] = x['geo']['coordinates']
-            print(tweet)
+            write_data['geo_result'] = geo_analyzer.geo_analysis(write_data['geo']) ####
     if x['place'] is not None:
         if x['place']['name'] is not None:
             write_data['city'] = x['place']['name']
+            if write_data['geo_result'] == None:
+                write_data['geo_result'] = geo_analyzer.city_analysis(x['place']['name']) ####
         if x['place']['full_name']:
             state_text = x['place']['full_name'].split(',')
-            write_data['state'] = state_text[1]
+            if len(state_text)>1:
+                write_data['state'] = state_text[1]
     write_data['raw_data'] = tweet
     write_data['sentiment_score'] = analyze_sentiment(tweet)
     if write_data['sentiment_score'] >0 :
@@ -55,8 +59,9 @@ def dataProcesser(tweet):
         write_data['sentiment_result'] = 'negative'
     else:
         write_data['sentiment_result'] = 'neutral'
+    write_data['IsAlcohol'] = keywordCheck.check_keyword(x['text'])
+    print(write_data['geo_result'])
 
-
-    if db.get(write_data['_id']) == None:
-        db.save(write_data)
-        print(write_data)
+    if queueData.tweets_db.get(write_data['_id']) == None:
+        queueData.tweets_db.save(write_data)
+        queueData.raw_tweets_db.save(x)
