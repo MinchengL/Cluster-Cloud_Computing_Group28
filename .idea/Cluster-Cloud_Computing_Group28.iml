@@ -10,7 +10,6 @@
       <sourceFolder url="file://$MODULE_DIR$/ccc/111" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ccc/script" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ccc/tweet_harvest" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ccc" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (Cluster-Cloud_Computing_Group28)" jdkType="Python SDK" />
