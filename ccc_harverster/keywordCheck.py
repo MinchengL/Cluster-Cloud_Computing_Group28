@@ -1,3 +1,9 @@
+#This file is developed by Team 28 of COMP90024 of The University of Melbourne
+#YING DU : 925566
+#XINHUI LU : 965246
+#MINCHENG LI : 889903
+#MIAN WANG : 948291
+#MINGZE XIA : 548737
 
 drink_type_list_without_qiyi = [' liquor', 'beer', 'brandy', 'whisky', 'vodka', 'on the rocks', 'abricotine', 'absinth', 'adovocaat', 'aguardiente', 'akvavit', 'ale', 'alegar', 'aperitif', 'applejack', 'aqua vitae', ' aquavit', 'arrack', ' bacchae', ' bacchant', 'bacchus', ' barleycorn', 'beaujolais', 'black velvet', ' blackstrap', 'blind tiger', 'blood mary', ' bock', 'boilermaker', 'bosa', 'bristol milk', ' fizz', 'bumbo', ' burgundy', ' calvados', 'cassis', 'cerevisia', 'chables', 'chianti', 'cider', 'coffin varnish', ' cognac', 'sneaky pete', 'soave', 'spritzer', 'spumante', 'stoutsuck', 'swizzle', 'tepache', 'tequila', 'teran', 'toddy', 'traminer', 'tuckhelm', 'veeno', 'vermouth', 'vin', 'vineyard', 'vino', 'vinum', 'vodka', 'yquem', 'zabaglione', 'zetinger', 'zuica']
 
