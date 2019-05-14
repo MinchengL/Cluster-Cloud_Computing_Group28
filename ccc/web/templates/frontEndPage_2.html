@@ -105,7 +105,7 @@
                             <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Income</a>
                         </li>
                         <li id="alcoholVsCrimeRate_analysis_menu_tab" role="presentation">
-                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Crime Rate</a>
+                            <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Sexual Offences</a>
                         </li>
                         <li id="alcoholVsSentiment_analysis_menu_tab" role="presentation">
                             <a role="menuitem" tabindex="-1" herf="#">Alcohol VS Sentiment Analysis</a>
@@ -128,6 +128,7 @@
 <div id="alcoholVsSentiment_chart_container"></div>
 <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
 <script src="static/gla_final_test.js"></script>
+<script src="static/crime_rate_data.js"></script>
 
 <script>
     var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
@@ -252,7 +253,6 @@
                     if (Data && Data != undefined && Data != "undefined") {
                         for (var item in Data) {
                             var geo = Data[item]
-                            console.log(geo[0])
                             var marker = new google.maps.Marker({
                                 position: new google.maps.LatLng(parseFloat(geo[1]), parseFloat(geo[0])),
                             });
@@ -334,7 +334,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Sentiment Score Per City(Area) / %'
+                    text: 'Sentiment Score Per City(Area)'
                 }
             },
             series: [{
@@ -378,14 +378,14 @@
         };
 
         crime_rate_data_map = new google.maps.Map(document.getElementById("crime_rate_data_map_container"),mapProp);
-        crime_rate_data_map.data.addGeoJson(incomedata); ////////////
+        crime_rate_data_map.data.addGeoJson(crimedata);
         crime_rate_data_map.data.setStyle(function(feature){
-            var value = feature.getProperty('income')
-            var color = value > 8400000 ? '#2b0104' :
-                value > 6300000 ? '#5b0204' :
-                    value > 4200000 ? '#8e040a' :
-                        value > 2400000 ? '#bf0712' :
-                            value > 1200000 ? '#e00c20' :
+            var value = feature.getProperty('crime_data')
+            var color = value > 300 ? '#2b0104' :
+                value > 250 ? '#5b0204' :
+                    value > 200 ? '#8e040a' :
+                        value > 150 ? '#bf0712' :
+                            value > 100 ? '#e00c20' :
                                 '#fd959d';
             return {
                 fillColor: color,
@@ -552,7 +552,7 @@
                 }
             },
             title: {
-                text: 'Alcohol Vs Crime Rate in Victoria'
+                text: 'Alcohol VS Number of Sexual Offences Per City(Area)'
             },
             xAxis: {
                 categories: []
@@ -630,9 +630,39 @@
                         var importedData = [];
                         var categories = [];
                         for (var item in Data) {
-                            var area = item.toString();
-                            categories.push(area);
-                            importedData.push(Data[item]);
+                            var interval = item.toString();
+                            if(interval != "[-1,-0.75]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[-0.75,-0.50]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[-0.50,-0.25]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[-0.25,0]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[0,0.25]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[0.25,0.50]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[0.50,0.75]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
+                            if(interval != "[0.75,1.0]"){
+                                categories.push(interval);
+                                importedData.push(Data[item]);
+                            }
                         }
                         alcoholVsSentiment_chart.xAxis[0].setCategories(categories);
                         alcoholVsSentiment_chart.series[0].update({data: importedData});

@@ -2,12 +2,10 @@ from web import app
 from flask import render_template
 from web import db,db_income,db_map,db_crime
 from flask import jsonify
-
 import json
 
 #def __cols(pairs=[]):
 #    return map(lambda x: {'id': '', 'label': x[0], 'type': x[1]}, pairs)
-
 
 @app.route('/')
 def home_page():
@@ -16,11 +14,6 @@ def home_page():
 @app.route('/hello')
 def home_page1():
     return render_template('hello.html')
-
-
-
-
-
 
 @app.route('/get_income_data')
 def ret_income_data():
@@ -48,8 +41,6 @@ def ret_crime_data():
     print(dict)
     return jsonify(dict)
 
-
-
 @app.route('/get_alcohol_time')
 def ret_alcohol_time():
     dict ={}
@@ -57,9 +48,6 @@ def ret_alcohol_time():
     for row in res:
         dict[row.key] = row.value
     return jsonify(dict)
-
-
-
 
 @app.route('/get_senti_data')
 def ret_sentidata():
@@ -70,18 +58,16 @@ def ret_sentidata():
     counts = db.view('get_sen_count/get_sen', group=True)
     for sum_sen in sums:
         num = sum_sen.value
-        name = sum_sen.key
+        sums_name = sum_sen.key
         for count_city in counts:
             num1 = count_city.value
-            mean = num / num1
-            if name is not None:
-                dict[name] = mean
-
+            count_name = count_city.key
+            if count_name == sums_name:
+                dict[count_name] = num/num1
+            else:
+                continue
     final_results = filter_city(db_map,dict)
-
     return jsonify(final_results)
-
-
 
 @app.route('/get_alchohol_data')
 def ret_alchohol_time():
@@ -89,9 +75,7 @@ def ret_alchohol_time():
     res = db.view('get_sen_count/week_count', group=True)
     for row in res:
         dict[row.key] = row.value
-
     return jsonify(dict)
-
 
 @app.route('/get_alchohol_income')
 def ret_alcohol_income():
@@ -139,7 +123,7 @@ def ret_alcohol_senti():
         elif (range >= -0.75 and range < -0.50):
             result["[-0.75,-0.50]"] += 1
         elif (range >= -0.50 and range < -0.25):
-            result["[-0.75,-0.50]"] += 1
+            result["[-0.50,-0.25]"] += 1
         elif (range >= -0.25 and range < 0):
             result["[-0.25,0]"] += 1
         elif (range >= 0 and range < 0.25):
@@ -158,10 +142,12 @@ def ret_alcohol_senti():
 def ret_alcohol_marker():
     i = 0
     dict = {}
-    tweet_sum = db_map.view('lga_map/lga_geo_data')
+    tweet_sum = db.view('get_sen_count/isalco_coor')
     for row in tweet_sum:
-        dict[i] = row.value[1][0][0][0]
-        i = i + 1
+        if row.value[0] is not None:
+            dict[i] = row.value
+            i = i + 1
+    print(dict)
     return jsonify(dict)
 
 
@@ -194,7 +180,6 @@ def ret_alcohol_crime():
 
 def filter_city(db, results):
     final_results = {}
-
     for item in results:
         if item is not None:
             city_name = item.upper()
@@ -203,67 +188,3 @@ def filter_city(db, results):
                     final_results[item] = results[item]
     return final_results
 
-
-
-
-
-
-''''@app.route('/get_income_map')
-def ret_income_map():
-    string_data=''
-    income_sum = db_income.view('get_income/total_income')
-    geo_map = db_map.view('lga_map/lga_geo_data')
-    for item in income_sum:
-        geojson_data = {
-            "type": "Feature",
-            "geometry": {
-                "type": None,
-                "coordinates": None
-            },
-            "properties": {
-                "name": None,
-                "value": None
-            }
-        }
-        item_value = item.value.split('(')
-        geojson_data["properties"]["name"] = item_value[0]
-        geojson_data["properties"]["value"] = item.key
-        for row in geo_map:
-            if item_value[0].upper() in row.key:
-                geojson_data["geometry"]["type"]=row.value[0]
-                geojson_data["geometry"]["coordinates"] = row.value[1]
-        result = str(geojson_data)
-        string_data += result
-
-    geojson_data_2 = {
-        "type": "FeatureCollection",
-        "features": str
-    }
-
-    ret_data=json.dumps(geojson_data_2)
-    print(type(ret_data))
-    return ret_data
-
-
-
-'''
-
-# crime data for chart
-''''@app.route('/get_crime_data')
-def ret_crime_data():
-   result = db.view('get_income/total_income')
-   for row in result:
-
-     
-
-    return jsonify(response)
-
-
-
-@app.route('/sentiment_data')
-def ret_alcohol_time():
-    result = db.view('my_design/name1')
-    dict = {}
-    for row in result:
-    
-'''
