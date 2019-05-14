@@ -1,8 +1,18 @@
+<!--This file is developed by Team 28 of COMP90024 of The University of Melbourne -->
+<!-- YING DU : 925566 -->
+<!-- XINHUI LU : 965246 -->
+<!-- MINCHENG LI : 889903 -->
+<!-- MIAN WANG : 948291 -->
+<!-- MINGZE XIA : 548737 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cluster and Cloud Computing Group 28</title>
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="static/gla_final_test.js"></script>
+    <script src="static/crime_rate_data.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQAekZZQR6lDRY5PcNsURMAYN5-EnTw1E" async defer></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -126,9 +136,7 @@
 <div id="alcoholVsIncome_chart_container"></div>
 <div id="alcoholVsCrimeRate_chart_container"></div>
 <div id="alcoholVsSentiment_chart_container"></div>
-<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
-<script src="static/gla_final_test.js"></script>
-<script src="static/crime_rate_data.js"></script>
+
 
 <script>
     var url = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
@@ -254,9 +262,8 @@
                         for (var item in Data) {
                             var geo = Data[item]
                             var marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(parseFloat(geo[1]), parseFloat(geo[0])),
+                                position: new google.maps.LatLng(parseFloat(geo[0]), parseFloat(geo[1])),
                             });
-
                             marker.setMap(alcohol_data_map);
                         }
                     }
@@ -378,9 +385,9 @@
         };
 
         crime_rate_data_map = new google.maps.Map(document.getElementById("crime_rate_data_map_container"),mapProp);
-        crime_rate_data_map.data.addGeoJson(crimedata);
+        crime_rate_data_map.data.addGeoJson(crimerate);
         crime_rate_data_map.data.setStyle(function(feature){
-            var value = feature.getProperty('crime_data')
+            var value = feature.getProperty('crime_rate')
             var color = value > 300 ? '#2b0104' :
                 value > 250 ? '#5b0204' :
                     value > 200 ? '#8e040a' :
@@ -631,35 +638,56 @@
                         var categories = [];
                         for (var item in Data) {
                             var interval = item.toString();
-                            if(interval != "[-1,-0.75]"){
+                            if(interval == "[-1,-0.75]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[-0.75,-0.50]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[-0.75,-0.50]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[-0.50,-0.25]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[-0.50,-0.25]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[-0.25,0]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[-0.25,0]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[0,0.25]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[0,0.25]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[0.25,0.50]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[0.25,0.50]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[0.50,0.75]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[0.50,0.75]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }
-                            if(interval != "[0.75,1.0]"){
+                        }
+                        for (var item in Data) {
+                            var interval = item.toString();
+                            if(interval == "[0.75,1.0]"){
                                 categories.push(interval);
                                 importedData.push(Data[item]);
                             }

@@ -1,1 +1,0 @@
-{"_id":"_design/crime","_rev":"22-150f716244f7a5c8ae8b13a95fbe3d33","language":"javascript","views":{"crime_search":{"map":"function (doc) {\n  if(doc.lga_name11){\n  emit([doc.lga_name11,doc.lga_code],doc.a30_sexual_offences);}\n}","reduce":"_sum"}}}
