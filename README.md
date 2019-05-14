@@ -1,5 +1,3 @@
-# Cluster-Cloud_Computing_Group28
-
 #This file is developed by Team 28 of COMP90024 of The University of Melbourne
 #YING DU : 925566
 #XINHUI LU : 965246
