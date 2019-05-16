@@ -1,0 +1,49 @@
+#This file is developed by Team 28 of COMP90024 of The University of Melbourne
+#YING DU : 925566
+#XINHUI LU : 965246
+#MINCHENG LI : 889903
+#MIAN WANG : 948291
+#MINGZE XIA : 948737
+
+# Common vars
+availability_zone: melbourne-qh2-uom
+
+# volume
+volumes:
+  - vol_name: g28_1
+    vol_size: 60
+  - vol_name: g28_2
+    vol_size: 60
+
+
+# Security group
+security_groups:
+  - name: g28_ssh
+    description: "Security group for SSH access"
+    protocol: tcp
+    port_range_min: 22
+    port_range_max: 22
+    remote_ip_prefix: 0.0.0.0/0
+  - name: g28_http
+    description: "Security group for HTTP"
+    protocol: tcp
+    port_range_min: 80
+    port_range_max: 80
+    remote_ip_prefix: 0.0.0.0/0
+  # - name: internal
+  #   description: "Security group for internal"
+  #   protocol: tcp
+  #   remote_group: internal
+
+# Instance
+instances:
+  - instance_name: g28_instance1
+    instance_image: 703d4362-dea8-425b-8654-313d50d40e03
+    instance_key_name: key
+    instance_flavor: uom.mse.2c9g
+    instance_volume: g28_1
+  - instance_name: g28_instance2
+    instance_image: 703d4362-dea8-425b-8654-313d50d40e03
+    instance_key_name: key
+    instance_flavor: uom.mse.2c9g
+    instance_volume: g28_2

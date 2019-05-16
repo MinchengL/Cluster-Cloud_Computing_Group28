@@ -1,0 +1,17 @@
+#This file is developed by Team 28 of COMP90024 of The University of Melbourne
+#YING DU : 925566
+#XINHUI LU : 965246
+#MINCHENG LI : 889903
+#MIAN WANG : 948291
+#MINGZE XIA : 948737
+
+- hosts: localhost
+  vars_files:
+    - host_vars/nectar.yaml
+  gather_facts: true
+
+  roles:
+    - role: openstack-common
+    - role: openstack-volume
+    - role: openstack-security-group
+    - role: openstack-instance

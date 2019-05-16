@@ -1,0 +1,32 @@
+#This file is developed by Team 28 of COMP90024 of The University of Melbourne
+#YING DU : 925566
+#XINHUI LU : 965246
+#MINCHENG LI : 889903
+#MIAN WANG : 948291
+#MINGZE XIA : 548737
+
+---
+- name: Pull docker 
+  become: yes
+  tags: 'couchdb'
+  command: docker pull couchdb:2.3.0
+
+- name: Create container
+  tags: 'couchdb'
+  become: yes
+  command: docker run -d --name couchdb --network host -p 5984:5984 -v /couchdb:/opt/couchdb/data -e "COUCHDB_USER=admin" -e "COUCHDB_PASSWORD=admin" couchdb:2.3.0
+
+- name: Modifies vm.args set cookie
+  tags: 'couchdb'
+  become: yes
+  command: docker exec couchdb bash -c "echo \"-setcookie cluster\" >> /opt/couchdb/etc/vm.args"
+
+- name: Modifies vm.args set name
+  tags: 'couchdb'
+  become: yes
+  command: docker exec couchdb bash -c "echo \"-name couchdb@{{ ansible_default_ipv4.address }}\" >> /opt/couchdb/etc/vm.args"
+
+- name: docker restart couchdb
+  tags: 'couchdb'
+  become: yes
+  command: docker restart couchdb
